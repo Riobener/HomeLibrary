@@ -1,0 +1,21 @@
+.alert {
+    width: 400px;
+    padding: 10px;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+
+}
+.alert.success {
+    background-color: #4CAF50;
+}
+
+.alert.danger {
+    background-color: #f44336;
+}
+.alert.accountcreate {
+    background-color: gold;
+}
+.alert.errorpass {
+    background-color: #f44336;
+}
