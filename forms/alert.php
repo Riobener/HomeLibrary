@@ -7,7 +7,7 @@ require "../php/db.php";
 global $mysql;
 session_start();
 if ($mysql && $_SESSION['count'] == 0):
-    $_SESSION['count']++;
+    $_SESSION['count'] = 1;
     ?>
     <div class="alert success">
         <strong>Успешное подключение к базе данных!</strong>
@@ -29,6 +29,13 @@ elseif ($_SESSION['flag'] == -1):
     ?>
     <div class="alert errorpass">
         <strong>Пароли не совпадают! Введите данные еще раз</strong>
+    </div>
+<?php
+elseif ($_SESSION['flag'] == -2):
+    $_SESSION['flag'] = 0
+    ?>
+    <div class="alert wrongauth">
+        <strong>Такого пользователя не существует!</strong>
     </div>
 <?php endif ?>
 <script>

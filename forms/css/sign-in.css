@@ -16,7 +16,7 @@ body {
     border-radius: 10px;
 }
 
-.form-signin .form-signin-heading, .form-signin .checkbox {
+.form-signin .form-signin-heading {
     display:flex;
     justify-content:center;
     margin-bottom: 20px;
