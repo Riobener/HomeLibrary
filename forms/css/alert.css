@@ -1,13 +1,12 @@
 .alert {
     width: 400px;
-    padding: 10px;
-    color: white;
+    padding: 5px;
     margin: 0 auto;
     text-align: center;
 
 }
 .alert.success {
-    background-color: #4CAF50;
+    background-color: forestgreen;
 }
 
 .alert.danger {

@@ -2,6 +2,7 @@
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
 </script>
 <link rel="stylesheet" type="text/css" href='css/alert.css'/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <?php
 require "../php/db.php";
 global $mysql;
@@ -9,34 +10,38 @@ session_start();
 if ($mysql && $_SESSION['count'] == 0):
     $_SESSION['count'] = 1;
     ?>
-    <div class="alert success">
-        <strong>Успешное подключение к базе данных!</strong>
+    <div class="alert alert-primary" role="alert">
+        Успешное подключение к базе данных!
     </div>
+
 <?php elseif (!$mysql): ?>
-    <div class="alert danger">
-        <strong>Не удалось подключиться к базе данных!</strong>
+    <div class="alert alert-danger" role="alert">
+        Не удалось подключиться к базе данных!
     </div>
 <?php
 elseif ($_SESSION['flag'] == 1):
     $_SESSION['flag'] = 0
     ?>
-    <div class="alert accountcreate">
-        <strong>Теперь вы можете войти под своей почтой и паролем!</strong>
+    <div class="alert alert-warning" role="alert">
+        Теперь вы можете войти под созданным аккаунтом!
     </div>
+
 <?php
 elseif ($_SESSION['flag'] == -1):
     $_SESSION['flag'] = 0
     ?>
-    <div class="alert errorpass">
-        <strong>Пароли не совпадают! Введите данные еще раз</strong>
+    <div class="alert alert-danger" role="alert">
+        Пароли не совпадают! Введите данные еще раз.
     </div>
+
 <?php
 elseif ($_SESSION['flag'] == -2):
     $_SESSION['flag'] = 0
     ?>
-    <div class="alert wrongauth">
-        <strong>Такого пользователя не существует!</strong>
+    <div class="alert alert-danger" role="alert">
+        Такого пользователя не существует!
     </div>
+
 <?php endif ?>
 <script>
     $(document).ready(function () {

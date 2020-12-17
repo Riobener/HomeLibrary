@@ -4,9 +4,10 @@
     <meta content="no-cache">
     <meta charset="UTF-8">
     <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href='css/sign-up.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
-<link rel="stylesheet" type="text/css" href='css/sign-up.css'/>
 <body>
 <?php
 require 'alert.php';
@@ -17,6 +18,7 @@ if (@$_COOKIE['email'] != ''):
     ?>
 <?php else: ?>
     <div class="signup-block">
+        <img class = "logoImage" src="../icons/logo.png"/>
         <form class="form-signup" action="../php/registration.php" method="post">
             <h2 class="form-signup-heading">Регистрация</h2>
             <div class="control-email">
@@ -31,7 +33,7 @@ if (@$_COOKIE['email'] != ''):
                        required=""/>
             </div>
             <div class="submit-block">
-                <button type="submit" name="submit" value='send message' class="submit-button">Зарегистрироваться
+                <button type="submit" name="submit" value='send message' class="btn btn-primary">Зарегистрироваться
                 </button>
             </div>
             <div class="signin-link">

@@ -1,12 +1,17 @@
-
-body {
-    background: #eee;
+body{
+    background: seagreen !important;
 }
-
 .signin-block {
-    margin: 100px;
+    margin: 45px;
 }
 
+.logoImage {
+    width: 135px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
 .form-signin {
     max-width: 300px;
     margin: 0 auto;
@@ -43,7 +48,7 @@ body {
 .signin-link{
     margin-top:10px;
 }
-.submit-button{
+.btn{
     padding: 10px;
     width: 150px;
 }

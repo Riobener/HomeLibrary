@@ -4,8 +4,8 @@ if (isset($_POST['submit'])) {
 
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
-    global $mysql, $dbname;
-    $qry = $mysql->query("SELECT * FROM `$dbname` WHERE `email` = '$user' AND `password` = '$pass'");
+    global $mysql;
+    $qry = $mysql->query("SELECT * FROM `users` WHERE `email` = '$user' AND `password` = '$pass'");
     $totalUser = $qry->fetch_assoc();
 
     session_start();

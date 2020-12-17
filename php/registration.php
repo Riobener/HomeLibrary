@@ -5,11 +5,11 @@ if (isset($_POST['submit'])) {
     $_SESSION['flag'] = 0;
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
-    $confpas = trim($_POST['confirm-password']);
+    $confirmPass = trim($_POST['confirm-password']);
     global $dbname;
-    if ($pass == $confpas) {
-        $sql = "INSERT INTO $dbname (email, password, info)
-VALUES ('$user', '$pass', 'какой-то хрычь')";
+    if ($pass == $confirmPass) {
+        $sql = "INSERT INTO users (email, password, info)
+VALUES ('$user', '$pass', 'обычный пользователь')";
         global $mysql;
         if ($mysql->query($sql) == true) {
             $_SESSION['flag'] = 1;
