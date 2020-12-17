@@ -1,7 +1,12 @@
-<script src=
-        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
-</script>
-<link rel="stylesheet" type="text/css" href='css/alert.css'/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<style>
+    .alert{
+        width: 400px;
+        padding: 5px;
+        margin: 0 auto;
+        text-align: center;
+    }
+</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <?php
 require "../php/db.php";
