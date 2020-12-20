@@ -1,3 +1,4 @@
+<?php //not hack?>
 <!-- Navbar -->
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success ">
