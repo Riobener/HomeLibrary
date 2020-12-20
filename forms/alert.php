@@ -1,10 +1,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <style>
     .alert{
-        width: 400px;
-        padding: 5px;
+        width: 220px;
         margin: 0 auto;
         text-align: center;
+        display:flex;
+        justify-content:center;
     }
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -36,7 +37,7 @@ elseif ($_SESSION['flag'] == -1):
     $_SESSION['flag'] = 0
     ?>
     <div class="alert alert-danger" role="alert">
-        Пароли не совпадают! Введите данные еще раз.
+        Пароли не совпадают! Повторите попытку.
     </div>
 
 <?php

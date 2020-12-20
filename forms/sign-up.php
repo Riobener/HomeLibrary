@@ -10,16 +10,17 @@
 
 <body>
 <?php
-require 'alert.php';
-?>
-<?php
 if (@$_COOKIE['email'] != ''):
     header('Location: main.php');
     ?>
 <?php else: ?>
     <div class="signup-block">
-        <img class = "logoImage" src="../icons/logo.png"/>
+
+        <img class = "logoImage" src="../icons/mainLogo.png"/>
         <form class="form-signup" action="../php/registration.php" method="post">
+            <?php
+            require 'alert.php';
+            ?>
             <h2 class="form-signup-heading">Регистрация</h2>
             <div class="control-email">
                 <input type="email" class="form-control" name="username" placeholder="Введите почту" required=""/>
@@ -37,11 +38,11 @@ if (@$_COOKIE['email'] != ''):
                 </button>
             </div>
             <div class="signin-link">
-                <a href="sign-in.php">Уже есть аккаунт? Войдите</a>
+                <a href="sign-in.php">Уже есть аккаунт? Войти</a>
             </div>
         </form>
     </div>
-
+    <img class = "bookShelf" src="../icons/bookShelf.png"/>
 <?php endif ?>
 </body>
 </html>

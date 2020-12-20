@@ -1,12 +1,17 @@
 body{
-    background: seagreen !important;
+    background: #198754 !important;
 }
 .signin-block {
-    margin: 45px;
+    margin: 20px;
 }
-
+.bookShelf{
+    width: 340px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .logoImage {
-    width: 135px;
+    width: 350px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -16,11 +21,14 @@ body{
     max-width: 300px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 15px 35px 40px;
+    padding: 5px 35px 15px;
     border: 1px solid #e5e5e5;
     border-radius: 10px;
 }
-
+.form-signin.alert{
+    display:flex;
+    justify-content:center;
+}
 .form-signin .form-signin-heading {
     display:flex;
     justify-content:center;

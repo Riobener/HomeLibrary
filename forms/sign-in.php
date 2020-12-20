@@ -3,24 +3,24 @@
 <head>
     <meta content="no-cache">
     <meta charset="UTF-8">
-    <title>Вход</title>
+    <title>Авторизация</title>
     <link rel="stylesheet" type="text/css" href='css/sign-in.css'/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-
-
 <body>
-<?php
-require 'alert.php';
-?>
+
 <?php
 if (@$_COOKIE['email'] != ''):
     header('Location: main.php');
     ?>
 <?php else: ?>
     <div class="signin-block">
-            <img class = "logoImage" src="../icons/logo.png"/>
+
+            <img class = "logoImage" src="../icons/mainLogo.png"/>
         <form class="form-signin" action="../php/auth.php" method="post">
+            <?php
+            require 'alert.php';
+            ?>
             <h2 class="form-signin-heading">Вход</h2>
             <div class="control-email">
                 <input type="email" class="form-control" name="username" placeholder="Электронная почта" required=""/>
@@ -38,6 +38,7 @@ if (@$_COOKIE['email'] != ''):
         </form>
 
     </div>
+    <img class = "bookShelf" src="../icons/bookShelf.png"/>
 <?php endif ?>
 </body>
 </html>

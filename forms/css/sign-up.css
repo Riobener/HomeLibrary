@@ -1,11 +1,17 @@
 body{
-    background: seagreen !important;
+    background: #198754 !important;
 }
 .signup-block {
-    margin: 45px;
+    margin: 20px;
+}
+.bookShelf{
+    width: 340px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .logoImage {
-    width: 135px;
+    width: 350px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -15,7 +21,7 @@ body{
     max-width: 300px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 15px 35px 40px;
+    padding: 5px 35px 15px;
     border: 1px solid #e5e5e5;
     border-radius: 10px;
 }
@@ -25,7 +31,10 @@ body{
     justify-content:center;
     margin-bottom: 20px;
 }
-
+.form-signup.alert{
+    display:flex;
+    justify-content:center;
+}
 .form-signup .control-email, .form-signup .control-password, .form-signup .confirm-password{
     display:flex;
     justify-content:center;

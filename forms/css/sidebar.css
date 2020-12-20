@@ -1,0 +1,29 @@
+:root{
+    --fontSize:16px;
+    --widthA: 250px;
+    --topSize: 60px;
+}
+#side-bar {
+    font-size: var(--fontSize);
+    text-align: center;
+    position: fixed;
+    width: var(--widthA);
+    overflow-y: scroll;
+    top:var(--topSize);
+    bottom:0;
+    background: #ecf2ee ;
+}
+@media (min-width: 1920px){
+    #side-bar{
+        --widthA: 320px;
+        --fontSize: 25px;
+        --topSize: 68px;
+    }
+}
+@media (max-width: 1000px){
+    #side-bar{
+        --widthA: 250px;
+        --fontSize: 16px;
+        --topSize: 138px;
+    }
+}
