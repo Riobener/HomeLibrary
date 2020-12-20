@@ -13,7 +13,7 @@
     bottom:0;
     background: #ecf2ee ;
 }
-@media (min-width: 1920px){
+@media (min-width: 1650px){
     #side-bar{
         --widthA: 320px;
         --fontSize: 25px;
