@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Регистрация</title>
     <link rel="stylesheet" type="text/css" href='css/sign-up.css'/>

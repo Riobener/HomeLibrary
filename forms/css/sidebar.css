@@ -1,29 +1,23 @@
-:root{
-    --fontSize:16px;
-    --widthA: 250px;
-    --topSize: 60px;
-}
+
 #side-bar {
-    font-size: var(--fontSize);
+    font-size: 16px;
     text-align: center;
-    position: fixed;
-    width: var(--widthA);
-    overflow-y: scroll;
-    top:var(--topSize);
-    bottom:0;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 10px;
     background: #ecf2ee ;
 }
 @media (min-width: 1650px){
     #side-bar{
-        --widthA: 320px;
-        --fontSize: 25px;
-        --topSize: 68px;
+        font-size: 22px;
     }
-}
-@media (max-width: 1000px){
+}#side-bar{
+     font-size: 16px;
+ }
+
+@media (max-width: 768px){
     #side-bar{
-        --widthA: 250px;
-        --fontSize: 16px;
-        --topSize: 138px;
+        font-size: 16px;
     }
+
 }

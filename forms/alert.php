@@ -45,9 +45,15 @@ elseif ($_SESSION['flag'] == -2):
     $_SESSION['flag'] = 0
     ?>
     <div class="alert alert-danger" role="alert">
-        Такого пользователя не существует!
+        Неверный логин или пароль!
     </div>
-
+<?php
+elseif ($_SESSION['flag'] == -3):
+    $_SESSION['flag'] = 0
+    ?>
+    <div class="alert alert-danger" role="alert">
+        Такой пользователь уже существует!
+    </div>
 <?php endif ?>
 <script>
     $(document).ready(function () {

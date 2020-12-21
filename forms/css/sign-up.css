@@ -4,6 +4,10 @@ body{
 .signup-block {
     margin: 20px;
 }
+img {
+    max-width: 100%;
+    height: auto;
+}
 .bookShelf{
     width: 340px;
     display: block;
@@ -17,6 +21,7 @@ body{
     margin-right: auto;
     margin-bottom: 10px;
 }
+
 .form-signup {
     max-width: 300px;
     margin: 0 auto;

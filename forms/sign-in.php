@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Авторизация</title>
     <link rel="stylesheet" type="text/css" href='css/sign-in.css'/>
@@ -15,8 +16,7 @@ if (@$_COOKIE['email'] != ''):
     ?>
 <?php else: ?>
     <div class="signin-block">
-
-            <img class = "logoImage" src="../icons/mainLogo.png"/>
+        <img class = "logoImage" src="../icons/mainLogo.png"/>
         <form class="form-signin" action="../php/auth.php" method="post">
             <?php
             require 'alert.php';
@@ -36,7 +36,6 @@ if (@$_COOKIE['email'] != ''):
                 <a href="sign-up.php">Нету аккаунта? Зарегистрируйтесь</a>
             </div>
         </form>
-
     </div>
     <img class = "bookShelf" src="../icons/bookShelf.png"/>
 <?php endif ?>
