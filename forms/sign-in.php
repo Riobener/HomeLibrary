@@ -8,13 +8,14 @@
     <link rel="stylesheet" type="text/css" href='css/sign-in.css'/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body>
 
 <?php
-if (@$_COOKIE['email'] != ''):
-    header('Location: main.php');
-    ?>
-<?php else: ?>
+require_once "../php/functions.php";
+if(isLoggedIn()):
+        header('Location: collections.php');
+?>
+<?php else:?>
+<body>
     <div class="signin-block">
         <img class = "logoImage" src="../icons/mainLogo.png"/>
         <form class="form-signin" action="../php/auth.php" method="post">
@@ -38,6 +39,6 @@ if (@$_COOKIE['email'] != ''):
         </form>
     </div>
     <img class = "bookShelf" src="../icons/bookShelf.png"/>
-<?php endif ?>
 </body>
+<?php endif?>
 </html>

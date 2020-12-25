@@ -14,15 +14,24 @@
         <div class = "menu" style="display: inline-block">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link" aria-current="review" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" aria-current="about" href="#">О проекте</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="review" href="#">Отзывы</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="review" href="#">Бесплатная библиотека</a>
-                </li>
+                <?php
+                require_once "../php/functions.php";
+                if(isAdmin($_SESSION['user'])){
+                    echo '<li class="nav-item">
+                    <a class="nav-link" aria-current="review" href="../admin/admin-panel.php">Админ панель</a>
+                </li>';
+                }
+                ?>
             </ul>
+
         </div>
 
         <form class="input-group" style=" margin-right: 25px;">

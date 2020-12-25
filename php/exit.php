@@ -1,6 +1,6 @@
 <?php
-require "auth.php";
-global $totalUser;
-setcookie('email', $totalUser['email'], time() - 3600, '/');
+session_start();
+unset($_SESSION['user']);
+unset($_SESSION['password']);
 header("Location: ../");
 ?>

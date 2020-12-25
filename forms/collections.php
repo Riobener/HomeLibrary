@@ -1,13 +1,13 @@
 <?php
+require_once "../php/functions.php";
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Pragma: no-cache');
-header('Expires: 0');
-if ($_COOKIE['email'] == ''):
-    header('Location: ../');
-    exit();
-    ?>
-<?php endif ?>
 
+if (!isLoggedIn()):
+    header('Location: ../');
+    ?>
+
+<?php else:?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +17,7 @@ if ($_COOKIE['email'] == ''):
 
     <link rel="stylesheet" type="text/css" href='css/header.css'/>
     <link rel="stylesheet" type="text/css" href='css/sidebar.css'/>
-    <link rel="stylesheet" type="text/css" href='css/main-content.css'/>
+    <link rel="stylesheet" type="text/css" href='css/collection-dashboard.css'/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
@@ -65,4 +65,5 @@ if ($_COOKIE['email'] == ''):
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
+<?php endif ?>
 </html>

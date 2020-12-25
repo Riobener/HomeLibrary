@@ -11,8 +11,9 @@
 
 <body>
 <?php
-if (@$_COOKIE['email'] != ''):
-    header('Location: main.php');
+require_once "../php/functions.php";
+if(isLoggedIn()):
+    header('Location: collections.php');
     ?>
 <?php else: ?>
     <div class="signup-block">
