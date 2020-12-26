@@ -12,7 +12,7 @@
 <?php
 require_once "../php/functions.php";
 if(isLoggedIn()):
-        header('Location: collections.php');
+        header('Location: favorites.php');
 ?>
 <?php else:?>
 <body>

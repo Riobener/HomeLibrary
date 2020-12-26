@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
 
         $_SESSION['user'] = $user;
         $_SESSION['password'] = $pass;
-        header('Location: ../forms/collections.php');
+        header('Location: ../forms/main-page.php');
     } else {
         $_SESSION['flag'] = -2;
         header('Location: ../forms/sign-in.php');

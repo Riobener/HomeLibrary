@@ -6,13 +6,24 @@ function isAdmin($user)
     $qry = $mysql->query("SELECT `level` FROM `users` WHERE `email` = '$user'");
     $totalUser = $qry->fetch_assoc();
     dbClose($mysql);
+    if($totalUser['level']==2){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+function isModerator($user){
+    $mysql = dbConnect();
+    $qry = $mysql->query("SELECT `level` FROM `users` WHERE `email` = '$user'");
+    $totalUser = $qry->fetch_assoc();
+    dbClose($mysql);
     if($totalUser['level']==1){
         return true;
     }
     else{
         return false;
     }
-
 }
 
 function regUser($user, $pass)

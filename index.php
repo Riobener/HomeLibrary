@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     $_SESSION['flag'] = 0;
     header('Location: forms/sign-in.php');
 } else {
-    header('Location: forms/collections.php');
+    header('Location: forms/main-page.php');
 }
 
 

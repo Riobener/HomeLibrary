@@ -1,44 +1,24 @@
-<div class="panel-group" style="background: #ecf2ee; text-align: center" ">
+<div class="panel-group"style=" text-align: center" ">
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">
-            <a>Список
-                каталогов</a>
-        </h4>
+        <h5 class="panel-title ">
+            <a>Список жанров</a>
+        </h5>
     </div>
-    <div id="side-bar" class="h-100">
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №1</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №2</a>
-                <a href="#" class="list-group-item list-group-item-action ">Каталог №3</a>
-            </div>
-        <div class="panel-footer"><a href="#" class="list-group-item list-group-item-action
-        list-group-item-success">Добавить каталог</a>
-        </div>
-        <div class="panel-footer"><a href="#" class="list-group-item list-group-item-action
-        list-group-item-danger">Удалить текущий каталог</a>
-        </div>
+    <div class="list-group">
+        <?php
+        include_once "../classes/LibraryManager.php";
+        $libraryManager = new LibraryManager();
+        $categories = $libraryManager->getCategories();
+        foreach($categories as $value){
+            echo '<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href = '.$value['id'].'>';
+            echo $value['name'];
+            echo '<span class="badge bg-success rounded-pill">';
+            echo $value['book_count'];
+            echo'</span>';
+            echo '</a>';
+        }
+        ?>
     </div>
 
 </div>
