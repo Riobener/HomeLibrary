@@ -20,6 +20,9 @@ if (!isLoggedIn()):
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
+        body{
+            background: whitesmoke;
+        }
         #cont {
             overflow-y: hidden;
             overflow-x: hidden;
@@ -49,10 +52,12 @@ if (!isLoggedIn()):
         .news {
             text-align: center;
         }
-        .textCol{
+
+        .textCol {
             padding-left: 0;
         }
-        .imgCol{
+
+        .imgCol {
             padding-right: 0;
         }
 
@@ -60,94 +65,84 @@ if (!isLoggedIn()):
 </head>
 <body>
 
-<div id="cont" class="container-fluid h-100">
+<div id="cont" class="container-fluid  h-100">
     <?php require "header.php" ?>
     <div class="container">
         <div class="name-section" style="text-align: center">
             <h3>Новинки</h3>
         </div>
         <div class="card-group">
-            <div class="card ">
-                <a href="#">
-                    <img class="card-img-top imageCard" src="../icons/book.jpg" alt="Card image cap">
-                </a>
-                <div class="card-body news">
-                    <h6 class="card-title">Название</h6>
-                    <p class="card-text">Автор</p>
-                </div>
-            </div>
-            <div class="card ">
-                <a href="#">
-                    <img class="card-img-top imageCard" src="../icons/book.jpg" alt="Card image cap">
-                </a>
-                <div class="card-body news">
-                    <h6 class="card-title">Название</h6>
-                    <p class="card-text">Автор</p>
-                </div>
-            </div>
-            <div class="card ">
-                <a href="#">
-                    <img class="card-img-top imageCard" src="../icons/book.jpg" alt="Card image cap">
-                </a>
-                <div class="card-body news">
-                    <h6 class="card-title">Название</h6>
-                    <p class="card-text">Автор</p>
-                </div>
-            </div>
-            <div class="card ">
-                <a href="#">
-                    <img class="card-img-top imageCard" src="../icons/book.jpg" alt="Card image cap">
-                </a>
-                <div class="card-body news">
-                    <h6 class="card-title">Название</h6>
-                    <p class="card-text">Автор</p>
-                </div>
-            </div>
-            <div class="card ">
-                <a href="#">
-                    <img class="card-img-top imageCard" src="../icons/book.jpg" alt="Card image cap">
-                </a>
-                <div class="card-body news">
-                    <h6 class="card-title">Название</h6>
-                    <p class="card-text">Автор</p>
-                </div>
-            </div>
-            <div class="card ">
-                <a href="#">
-                    <img class="card-img-top imageCard" src="../icons/book.jpg" alt="Card image cap">
-                </a>
-                <div class="card-body news">
-                    <h6 class="card-title">Название</h6>
-                    <p class="card-text">Автор</p>
-                </div>
-            </div>
-
+            <?php
+            require_once "../classes/LibraryManager.php";
+            require_once "../classes/FileManager.php";
+            $manager = new LibraryManager();
+            $fileManager = new FileManager();
+            if(isset($_GET['cat'])){
+                $books = $manager->getBooksByCat($_GET['cat']);
+                if(!isset($books)){
+                    echo '<div style="text-align: center;">
+<h1>Книг нет и вообще ничего нет :(</h1>
+</div>';
+                }
+            }else{
+                $books = $manager->getBooks();
+                if(!isset($books)){
+                    echo '<div style="text-align: center;">
+<h1>Книг нет и вообще ничего нет :(</h1>
+</div>';
+                }
+            }
+            $count = 1;
+            foreach ($books as $value) {
+                echo '<div class="card">
+                <a href="../forms/book-page.php?book=' . $value['id'] . '">';
+                echo '<img class="card-img-top imageCard" src="'.$fileManager->getImagePath($value['id']).'" alt="Card image cap">
+                </a>';
+                echo '<div class="card-body news">';
+                echo '<h6 class="card-title">' . $value['name'] . '</h6>
+                    <small><p class="card-text">' . $value['authors'] . '</p></small>
+                    </div>
+            </div>';
+                if (($count) == 6) {
+                    break;
+                } else {
+                    $count++;
+                }
+            }
+            ?>
         </div>
     </div>
     <div class="container mt-4">
-        <div class="row h-100">
+        <div class="row no-gutters h-100">
             <div id="side-bar" class="col-xl-3 col-lg-3 col-5 col-sm-4 col-xxl-3">
                 <?php require "sidebar.php" ?>
             </div>
-
             <div class="col-xl-9 col-lg-9 col-7 col-sm-8 .col-xxl-9">
                 <div class="card-deck">
-                    <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-4 imgCol">
-                                <img class="card-img-top fullImage" src="../icons/book.jpg">
-                            </div>
-                            <div class="col-md-8 textCol">
-                                <div class="card-body">
-                                    <h3 class="card-title">Название</h3>
-                                    <p class="card-text">Автор</p>
-                                    <p class="card-text"><small class="text-muted">Описание</small></p>
-                                    <a class="btn btn-success p-1"href="#" style="width:120px"> Читать</a>
-                                    <a class="btn btn-success p-1"href="#" style="width:200px"> Добавить в избранное</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!---->
+                    <?php
+                    foreach ($books as $value) {
+                        $categoryName = $manager->getCategoryByID($value['categories']);
+                        echo '<div class="card mb-3">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4 imgCol">
+                                                    <img class="card-img-top fullImage" src="'.$fileManager->getImagePath($value['id']).'">
+                                                </div>
+                                                <div class="col-md-8 textCol">
+                                                    <div class="card-body">';
+
+                        echo '<h3 class="card-title">' . $value['name'] . '</h3>';
+                        echo '<p class="card-text mt-3"><b>Автор: </b> ' . $value['authors'] . '</p>';
+                        echo '<p class="card-text"><b>Жанр: </b>' . $categoryName['name'] . '</p>';
+                        echo '<p class="card-text"><small class="text-muted"">' . $value['description'] . '</small></p>';
+                        echo '<a class="btn btn-success" href="../forms/book-page.php?book=' . $value['id'] . '"' . ' style="width:170px">На страницу книги</a>';
+                        echo '                      
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>

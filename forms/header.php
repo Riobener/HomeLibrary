@@ -19,12 +19,6 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="review" href="favorites.php">Избранное</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="about" href="../forms/adding-book.php">Запрос книги</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="review" href="#">Отзывы</a>
-                    </li>
 
                     <?php
                     require_once "../php/functions.php";
@@ -34,17 +28,17 @@
                 </li>';
                     } else if (isModerator($_SESSION['user'])) {
                         echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="review" href="../admin/admin-panel.php">Новые заказы</a>
-                </li>';
+                        <a class="nav-link" aria-current="about" href="upload-book.php">Добавить книгу</a>
+                    </li>';
                     }
                     ?>
                 </ul>
 
             </div>
 
-            <form class="input-group" style=" margin-right: 25px;">
-                <input type="search" class="form-control" placeholder="Поиск по каталогу" aria-label="Search"/>
-                <button type="button" class="btn btn-outline-light">Найти</button>
+            <form class="input-group" action="../php/searchBook.php" style=" margin-right: 25px;" method="get">
+                <input type="search" name="searchingField" class="form-control" placeholder="Поиск книги"/>
+                <button type="submit" class="btn btn-outline-light">Найти</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">

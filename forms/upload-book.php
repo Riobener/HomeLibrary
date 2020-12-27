@@ -34,7 +34,7 @@ if (!isLoggedIn()):
         <div class="name-section" style="text-align: center">
             <h3>Запрос на добавление книги</h3>
         </div>
-        <form action="../php/sendBook.php" method="post">
+        <form enctype="multipart/form-data" action="../php/uploadBook.php" method="post">
             <div class="form-group ">
                 <input class="form-control form-control-lg mb-2" type="text" name="name" placeholder="Название книги">
                 <input class="form-control form-control-lg mb-2" type="text"name="author" placeholder="Ф.И.О. автора">
@@ -59,10 +59,14 @@ if (!isLoggedIn()):
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Исходный текст книги</label>
-                <input class="form-control form-control-lg" id="formFileLg" type="file" name="file"/>
+                <label for="exampleFormControlFile1">Фотография обложки</label>
+                <input class="form-control form-control-lg" id="formImageFile" type="file" name="fileImage"/>
             </div>
-            <button type="submit" name="submit" class="btn btn-success mt-3" style="width:200px; height: 45px">Отправить запрос</button>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Исходный текст книги</label>
+                <input class="form-control form-control-lg" id="formTextFile" type="file" name="fileText"/>
+            </div>
+            <button type="submit" name="submit" class="btn btn-success mt-3" style="width:200px; height: 45px">Добавить книгу</button>
         </form>
 
     </div>

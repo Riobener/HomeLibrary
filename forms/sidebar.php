@@ -11,7 +11,7 @@
         $libraryManager = new LibraryManager();
         $categories = $libraryManager->getCategories();
         foreach($categories as $value){
-            echo '<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href = '.$value['id'].'>';
+            echo '<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href =?cat='.$value['id'].'>';
             echo $value['name'];
             echo '<span class="badge bg-success rounded-pill">';
             echo $value['book_count'];
