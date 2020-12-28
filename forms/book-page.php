@@ -2,7 +2,6 @@
 require_once "../php/functions.php";
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Pragma: no-cache');
-
 if (!isLoggedIn()):
     header('Location: ../');
     ?>
@@ -13,12 +12,17 @@ if (!isLoggedIn()):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../icons/miniLogo.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href='css/header.css'/>
     <title>Страница книги</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <style>
+        body {
+            background: whitesmoke;
+        }
+
         #cont {
             overflow-y: hidden;
             overflow-x: hidden;
@@ -49,14 +53,24 @@ if (!isLoggedIn()):
         .imgCol {
             padding-right: 0;
         }
+
+         .alert {
+             width: 220px;
+             margin: 0 auto;
+             text-align: center;
+             display: flex;
+             justify-content: center;
+         }
     </style>
 </head>
 <body>
-<div id="cont" class="container-fluid h-100">
+<div id="cont" class="container-fluid">
     <?php require_once "header.php";
-    echo '<div class="name-section mt-2" style="text-align: center">
-            <h3>Страница книги</h3>
-        </div>';
+
+    require 'alert.php';
+
+
+    echo '</div>';
     require_once "../classes/LibraryManager.php";
     require_once "../classes/FileManager.php";
     $libManager = new LibraryManager();
@@ -64,7 +78,19 @@ if (!isLoggedIn()):
     $book = $libManager->getBookByID($_GET['book']);
     $categoryName = $libManager->getCategoryByID($book['categories']);
     if (isset($_GET['book']) && isset($book)) {
-        echo ' 
+        if (isset($_GET['r'])) {
+            echo '<div class="name-section mt-2" style="text-align: center">
+            <h3>Режим чтения </h3>
+        </div>';
+            $textPath = $fileManager->getTextPath($book['id']);
+            echo '<div class="container" style="background: white">';
+            $libManager->simpleFb2ShowParser($textPath);
+            echo '</div>';
+        } else {
+            echo '<div class="name-section mt-2" style="text-align: center">
+            <h3>Информация о книге </h3>
+        </div>';
+            echo ' 
         <div class="container mt-4 bookPage">
 
                 <div class="card-deck">
@@ -75,30 +101,37 @@ if (!isLoggedIn()):
                             </div>
                             <div class="col-md-8 textCol">
                                 <div class="card-body">';
-        echo '<h3 class="card-title">' . $book['name'] . '</h3>';
-        echo '<p class="card-text mt-3"><b>Автор: </b> ' . $book['authors'] . '</p>';
-        echo '<p class="card-text"><b>Жанр: </b>' . $categoryName['name'] . '</p>';
-        echo '<p class="card-text"><small class="text-muted"">' . $book['description'] . '</small></p>';
-        echo '<a class="btn btn-success p-2" href="../forms/book-page.php?book=' . $book['id'] . '"' . ' style="width:150px">Читать</a><br/>';
-        echo '<a class="btn btn-success mt-2 p-2" href="../forms/book-page.php?book=' . $book['id'] . '"' . ' style="width:200px">Добавить в избранное</a><br/>';
-        if(isAdmin($_SESSION['user'])||isModerator($_SESSION['user'])){
-            echo '<a class="btn btn-danger p-2 mt-2" href="../forms/book-page.php?book=' . $book['id'] . '"' . ' style="width:170px">Удалить</a>';
-        }
-        echo '</div>
+            echo '<h3 class="card-title">' . $book['name'] . '</h3>';
+            echo '<p class="card-text mt-3"><b>Автор: </b> ' . $book['authors'] . '</p>';
+            echo '<p class="card-text"><b>Жанр: </b>' . $categoryName['name'] . '</p>';
+            echo '<p class="card-text"><small class="text-muted"">' . $book['description'] . '</small></p>';
+            echo '<a class="btn btn-success p-2" href="../forms/book-page.php?book=' . $book['id'] . '&r=1"' . ' style="width:150px">Читать</a><br/>';
+
+            if ($libManager->checkFavorite($_SESSION['user'], $book['id'])) {
+                echo '<a class="btn btn-warning mt-2 p-2" href="../php/deleteFavorite.php?book=' . $book['id'] . '"' . ' style="width:200px">Убрать из избранного</a><br/>';
+            } else {
+                echo '<a class="btn btn-success mt-2 p-2" href="../php/addFavorite.php?book=' . $book['id'] . '"' . ' style="width:200px">Добавить в избранное</a><br/>';
+
+            }
+            if (isAdmin($_SESSION['user']) || isModerator($_SESSION['user'])) {
+                echo '<a class="btn btn-danger p-2 mt-2" href="../php/deleteBook.php?book=' . $book['id'] . '"' . ' style="width:170px">Удалить книгу</a>';
+            }
+            echo '</div>
                             </div>
                         </div>
                     </div>
                 </div>
         </div>
         ';
+        }
     } else {
         header('Location: ../forms/main-page.php');
     }
     ?>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
 </body>
 
 <?php endif ?>

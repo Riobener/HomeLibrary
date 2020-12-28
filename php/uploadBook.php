@@ -23,7 +23,6 @@ if (isset($_POST['submit'])) {
     $mysql->query($sqlBook);
     $mysql->query($sqlCat);
     dbClose($mysql);
-} else {
-    echo "bEDA";
+    header("Location: ../forms/main-page.php");
 }
 ?>

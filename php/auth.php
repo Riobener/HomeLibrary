@@ -5,7 +5,6 @@ if (isset($_POST['submit'])) {
     $pass = trim($_POST['password']);
     session_start();
     if (checkUser($user, $pass)) {
-
         $_SESSION['user'] = $user;
         $_SESSION['password'] = $pass;
         header('Location: ../forms/main-page.php');

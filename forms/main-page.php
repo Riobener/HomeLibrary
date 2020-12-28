@@ -14,6 +14,7 @@ if (!isLoggedIn()):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Главная страница</title>
+    <link rel="shortcut icon" href="../icons/miniLogo.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href='css/header.css'/>
     <link rel="stylesheet" type="text/css" href='css/sidebar.css'/>
     <link rel="stylesheet" type="text/css" href='css/favorites-dashboard.css'/>
@@ -67,6 +68,9 @@ if (!isLoggedIn()):
 
 <div id="cont" class="container-fluid  h-100">
     <?php require "header.php" ?>
+    <?php
+    require 'alert.php';
+    ?>
     <div class="container">
         <div class="name-section" style="text-align: center">
             <h3>Новинки</h3>

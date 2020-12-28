@@ -18,7 +18,7 @@ class FileManager
         $dir = $_SERVER["DOCUMENT_ROOT"] . "/HomeLibrary/storage/" . $folderID;;
         $files1 = scandir($dir);
         foreach($files1 as $value){
-            if($value=='text.txt'||$value=='image.docx'||$value=='image.fb2'){
+            if($value=='text.pdf'||$value=='text.fb2'){
                 return $dir."/".$value;
             }
         }
@@ -32,13 +32,29 @@ class FileManager
             die('Не удалось создать директорию под книгу');
         }
     }
-
+    function deleteDirectory($dirPath){
+        if (! is_dir($dirPath)) {
+            throw new InvalidArgumentException("$dirPath must be a directory");
+        }
+        if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+            $dirPath .= '/';
+        }
+        $files = glob($dirPath . '*', GLOB_MARK);
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                self::deleteDir($file);
+            } else {
+                unlink($file);
+            }
+        }
+        rmdir($dirPath);
+    }
     //fileType = 1 - png,jpg. = 0 - text;
     function addFile($fileName, $path, $type)
     {
         if ($type == 0) {
             $name = 'text';
-            $allowedfileExtensions = array('txt', 'doc', 'pdf');
+            $allowedfileExtensions = array('fb2', 'pdf');
         } else if ($type == 1) {
             $name = 'image';
             $allowedfileExtensions = array('png', 'jpg');
@@ -53,9 +69,9 @@ class FileManager
                 $uploadFileDir = $path;
                 $dest_path = $uploadFileDir . $newFileName;
                 if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                    $message = 'File is successfully uploaded.';
+                    $_SESSION['flag']=4;
                 } else {
-                    $message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+                    $_SESSION['flag']=-4;
                 }
             }
         }

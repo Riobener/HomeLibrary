@@ -13,8 +13,9 @@ if (!isLoggedIn()):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../icons/miniLogo.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href='css/header.css'/>
-    <title>Главная страница</title>
+    <title>Высшие привилегии</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
@@ -32,7 +33,7 @@ if (!isLoggedIn()):
     <?php require "header.php" ?>
     <div class="container">
         <div class="name-section" style="text-align: center">
-            <h3>Запрос на добавление книги</h3>
+            <h3>Добавить книгу</h3>
         </div>
         <form enctype="multipart/form-data" action="../php/uploadBook.php" method="post">
             <div class="form-group ">

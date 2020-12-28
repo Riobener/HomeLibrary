@@ -14,10 +14,10 @@
             <div class="menu" style="display: inline-block">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="review" href="main-page.php">Главная</a>
+                        <a class="nav-link" aria-current="review" href="../forms/main-page.php">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="review" href="favorites.php">Избранное</a>
+                        <a class="nav-link" aria-current="review" href="../forms/favorites.php">Избранное</a>
                     </li>
 
                     <?php

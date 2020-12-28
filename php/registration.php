@@ -6,6 +6,15 @@ if (isset($_POST['submit'])) {
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
     $confirmPass = trim($_POST['confirm-password']);
+    if (!filter_var($user, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['flag'] = -5;
+        header('Location: ../forms/sign-up.php');
+        exit();
+    }else if(strlen($pass)<=7){
+        $_SESSION['flag'] = -6;
+        header('Location: ../forms/sign-up.php');
+        exit();
+    }
     //Проверка на занятый email.
     if (isUserExist($user)) {
         $_SESSION['flag'] = -3;

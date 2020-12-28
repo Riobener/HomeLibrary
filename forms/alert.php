@@ -8,8 +8,7 @@
         justify-content: center;
     }
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <?php
 require_once "../php/db.php";
 $mysql = dbConnect();
@@ -54,6 +53,34 @@ elseif ($_SESSION['flag'] == -3):
     ?>
     <div class="alert alert-danger" role="alert">
         Такой пользователь уже существует!
+    </div>
+<?php
+elseif ($_SESSION['flag'] == 4):
+    $_SESSION['flag'] = 0
+    ?>
+    <div class="alert alert-danger" role="alert">
+        Операция успешно выполнена!
+    </div>
+<?php
+elseif ($_SESSION['flag'] == -4):
+    $_SESSION['flag'] = 0
+    ?>
+    <div class="alert alert-danger" role="alert">
+        Во время выполнения операции произошла ошибка!
+    </div>
+<?php
+elseif ($_SESSION['flag'] == -5):
+    $_SESSION['flag'] = 0
+    ?>
+    <div class="alert alert-danger" role="alert">
+        Неправильный email. Введите данные еще раз.
+    </div>
+<?php
+elseif ($_SESSION['flag'] == -6):
+    $_SESSION['flag'] = 0
+    ?>
+    <div class="alert alert-danger" role="alert">
+        Пароль должен содержать более 7 символов!
     </div>
 <?php endif ?>
 
