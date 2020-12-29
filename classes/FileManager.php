@@ -3,6 +3,7 @@
 
 class FileManager
 {
+    //возвращает путь к файлу с обложкой книги. На вход получает ID книги.
     function getImagePath($folderID)
     {
         $dir = $_SERVER["DOCUMENT_ROOT"] . "/HomeLibrary/storage/" . $folderID;;
@@ -13,6 +14,7 @@ class FileManager
             }
         }
     }
+    //возращает путь к файлу fb2. В нем содержится текст книги.
     function getTextPath($folderID)
     {
         $dir = $_SERVER["DOCUMENT_ROOT"] . "/HomeLibrary/storage/" . $folderID;;
@@ -23,6 +25,7 @@ class FileManager
             }
         }
     }
+    //создает директорию под объект. В данном случае, объектом является ID книги.
     function createStorage($objectID)
     {
         $filepath = $_SERVER["DOCUMENT_ROOT"] . "/HomeLibrary/storage/" . $objectID;
@@ -32,9 +35,10 @@ class FileManager
             die('Не удалось создать директорию под книгу');
         }
     }
+    //удаляет директорию. На вход получает путь диеректории.
     function deleteDirectory($dirPath){
         if (! is_dir($dirPath)) {
-            throw new InvalidArgumentException("$dirPath must be a directory");
+            throw new InvalidArgumentException("$dirPath должен быть указан путь к директории");
         }
         if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
             $dirPath .= '/';
@@ -49,7 +53,8 @@ class FileManager
         }
         rmdir($dirPath);
     }
-    //fileType = 1 - png,jpg. = 0 - text;
+    //добавляет файл в директорию. На вход подается имя файла, путь и тип.
+    //fileType = 1 - png,jpg. = 0 - fb2;
     function addFile($fileName, $path, $type)
     {
         if ($type == 0) {
@@ -70,12 +75,36 @@ class FileManager
                 $dest_path = $uploadFileDir . $newFileName;
                 if (move_uploaded_file($fileTmpPath, $dest_path)) {
                     $_SESSION['flag']=4;
+                    return true;
                 } else {
                     $_SESSION['flag']=-4;
+                    return false;
                 }
+            }else{
+                $_SESSION['flag']=-4;
+                return false;
             }
+        }else{
+            $_SESSION['flag']=-4;
+            return false;
         }
-
-
+    }
+    //парсит содержимое fb2 файла. На вход получает путь к папке.
+    function simpleFb2ShowParser($filePath)
+    {
+        //Читаем файл.
+        //Создаем XML документ
+        $doc = new DOMDocument();
+        //Отключаем проверку ошибок
+        $doc->strictErrorChecking = false;
+        $doc->recover = true;
+        //Загружаем содержимое файла и выводим на экран
+        $load = $doc->load($filePath, LIBXML_NOERROR);
+        $section = $doc->getElementsByTagName('section');
+        $section_count = count($section);
+        for ($i = 1; $i < $section_count; $i++) {
+            $stringXML = $doc->saveXML($section->item($i));
+            echo $stringXML;
+        }
     }
 }

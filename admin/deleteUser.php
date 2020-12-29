@@ -9,12 +9,19 @@ if (isset($_POST['submit'])) {
     $info = trim($_POST['user']);
     $user = getUser($info);
     if(isset($user)){
-        $userID = $user['id'];
-        $sqlBook = "DELETE FROM `users` WHERE `id`='$userID'";
-        $mysql->query($sqlBook);
-        dbclose($mysql);
-        $_SESSION['flag'] = 4;
-        header('Location: ../admin/admin-panel.php');
+        if($user['level']!=2) {
+            $userID = $user['id'];
+            $sqlUser = "DELETE FROM `users` WHERE `id`='$userID'";
+            $sqlFavor = "DELETE FROM `favorite` WHERE `userID`='$userID'";
+            $mysql->query($sqlUser);
+            $mysql->query($sqlFavor);
+            dbclose($mysql);
+            $_SESSION['flag'] = 4;
+            header('Location: ../admin/admin-panel.php');
+        }else{
+            $_SESSION['flag'] = -4;
+            header('Location: ../admin/admin-panel.php');
+        }
     }else{
         $_SESSION['flag'] = -4;
         header('Location: ../admin/admin-panel.php');

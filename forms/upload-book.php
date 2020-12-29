@@ -20,6 +20,9 @@ if (!isLoggedIn()):
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <style>
+        body {
+            background: whitesmoke;
+        }
         #cont {
             overflow-y: hidden;
             overflow-x: hidden;

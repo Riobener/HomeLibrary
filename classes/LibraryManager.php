@@ -5,6 +5,7 @@ require_once "../php/functions.php";
 
 class LibraryManager
 {
+    //получение всех категорий
     function getCategories()
     {
         $mysql = dbConnect();
@@ -15,7 +16,7 @@ class LibraryManager
         dbclose($mysql);
         return $allRows;
     }
-
+    //получение ID всех избранных книг пользователя. На вход подается $_SESSION['user'].
     function getAllFavoriteID($user)
     {
         $userInfo = getUser($user);
@@ -32,7 +33,8 @@ class LibraryManager
             return null;
         }
     }
-
+    //проверяет, добавлена ли книга в список избранных пользователя.
+    //на вход подается $_SESSION['user'] и ID книги.
     function checkFavorite($user, $bookID)
     {
         $userInfo = getUser($user);
@@ -52,7 +54,7 @@ class LibraryManager
         }
         return false;
     }
-
+    //получить категорию по ее ID;
     function getCategoryByID($catID)
     {
         $mysql = dbConnect();
@@ -61,7 +63,7 @@ class LibraryManager
         dbclose($mysql);
         return $row;
     }
-
+    //получить книгу по ее ID;
     function getBookByID($bookID)
     {
         $mysql = dbConnect();
@@ -70,7 +72,7 @@ class LibraryManager
         dbclose($mysql);
         return $row;
     }
-
+    //найти книгу в базе данных. На вход подается данные с формы поиска
     function findBook($searchField)
     {
         $mysql = dbConnect();
@@ -80,6 +82,8 @@ OR `authors` LIKE '%$searchField%' OR `description` LIKE '%$searchField%'");
         dbclose($mysql);
         return $row;
     }
+    //получить избранные книги, по полученное строке
+    //входная строка приходит в формате "12,16,17", где цифры - id книг.
     function getFavoriteBooksByID($idString){
         $mysql = dbConnect();
         $sql = $mysql->query("SELECT * FROM `books` WHERE `id` IN ($idString) ORDER BY `id`ASC");
@@ -89,6 +93,7 @@ OR `authors` LIKE '%$searchField%' OR `description` LIKE '%$searchField%'");
         dbClose($mysql);
         return $allRows;
     }
+    //получить списка всех книг в бд
     function getBooks()
     {
         $mysql = dbConnect();
@@ -99,7 +104,7 @@ OR `authors` LIKE '%$searchField%' OR `description` LIKE '%$searchField%'");
         dbclose($mysql);
         return $allRows;
     }
-
+    //получение книг по их категориям. На вход подается ID категории.
     function getBooksByCat($categoryID)
     {
         $mysql = dbConnect();
@@ -110,30 +115,11 @@ OR `authors` LIKE '%$searchField%' OR `description` LIKE '%$searchField%'");
         dbclose($mysql);
         return $allRows;
     }
+    //удаляет книгу. На вход получает ID книги.
     function deleteBook($bookID){
         $mysql = dbConnect();
         $sqlBook = "DELETE FROM `books` WHERE `id`='$bookID'";
         $mysql->query($sqlBook);
         dbclose($mysql);
     }
-
-    function simpleFb2ShowParser($filePath)
-    {
-        //Читаем файл.
-        //Создаем XML документ
-        $doc = new DOMDocument();
-        //Отключаем проверку ошибок
-        $doc->strictErrorChecking = false;
-        $doc->recover = true;
-        //Загружаем содержимое файла и выводим на экран
-        $load = $doc->load($filePath, LIBXML_NOERROR);
-        $section = $doc->getElementsByTagName('section');
-        $section_count = count($section);
-        for ($i = 1; $i < $section_count; $i++) {
-            $stringXML = $doc->saveXML($section->item($i));
-            echo $stringXML;
-        }
-    }
-
-
 }

@@ -84,7 +84,7 @@ if (!isLoggedIn()):
         </div>';
             $textPath = $fileManager->getTextPath($book['id']);
             echo '<div class="container" style="background: white">';
-            $libManager->simpleFb2ShowParser($textPath);
+            $fileManager->simpleFb2ShowParser($textPath);
             echo '</div>';
         } else {
             echo '<div class="name-section mt-2" style="text-align: center">

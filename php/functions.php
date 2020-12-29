@@ -1,5 +1,6 @@
 <?php
 require_once "db.php";
+//проверка, является ли пользователь сессии, админом.
 function isAdmin($user)
 {
     $mysql = dbConnect();
@@ -12,7 +13,7 @@ function isAdmin($user)
         return false;
     }
 }
-
+//проверка, является ли пользователь сессии, модератором.
 function isModerator($user)
 {
     $mysql = dbConnect();
@@ -25,7 +26,7 @@ function isModerator($user)
         return false;
     }
 }
-
+//возвращает данные о пользователе. На вход подается $_SESSION['user']
 function getUser($user)
 {
     $mysql = dbConnect();
@@ -34,7 +35,7 @@ function getUser($user)
     dbclose($mysql);
     return $row;
 }
-
+//регистрирует пользователя, добавляя его пароль и email, с начальным уровнем доступа - 0.
 function regUser($user, $pass)
 {
     $mysql = dbConnect();
@@ -46,7 +47,7 @@ VALUES ('$user','$pass',0)")) {
     dbClose($mysql);
     return false;
 }
-
+//проверка, существует ли такой пользователь в бд. Необходимо при регистрации.
 function isUserExist($user)
 {
     $mysql = dbConnect();
@@ -58,7 +59,7 @@ function isUserExist($user)
         return false;
     }
 }
-
+//проверка, являются ли полученные данные верными. Возвращает true, если пользователь ввел все о себе правильно.
 function checkUser($user, $password)
 {
     if (($user == "") || ($password == "")) return false;
@@ -69,7 +70,7 @@ function checkUser($user, $password)
     dbClose($mysql);
     return password_verify($password, $hash);
 }
-
+//проверка, авторизован ли пользователь.
 function isLoggedIn()
 {
     session_start();
