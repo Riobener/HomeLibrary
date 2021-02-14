@@ -1,2 +1,2 @@
 # HomeLibrary
-Курсовая работа на тему "Домашняя библиотека"
+University course work. Php website for searching and reading books.
